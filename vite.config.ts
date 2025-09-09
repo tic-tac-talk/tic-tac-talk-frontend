@@ -36,4 +36,7 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },
+  optimizeDeps: {
+    exclude: ['@ffmpeg/ffmpeg'],
+  },
 } as VitestExtendedConfig);
