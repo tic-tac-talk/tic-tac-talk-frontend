@@ -26,7 +26,12 @@
     "noUncheckedSideEffectImports": true,
 
     "paths": { "@/*": ["src/*"] },
-    "types": ["node", "vite-plugin-svgr/client"]
+    "types": [
+      "node",
+      "vite-plugin-svgr/client",
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ]
   },
   "include": ["src"]
 }
