@@ -100,7 +100,11 @@ const globalStyles = css`
 
   html,
   body {
-    background-color: ${theme.COLORS.BACKGROUND};
+    background: linear-gradient(
+        ${theme.COLORS.BACKGROUND[1]},
+        ${theme.COLORS.BACKGROUND[2]}
+      )
+      fixed;
     line-height: 1.5;
   }
 

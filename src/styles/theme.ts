@@ -11,8 +11,7 @@ const theme = {
       5: 'rgb(229, 229, 234)',
       6: 'rgb(242, 242, 247)',
     },
-    BACKGROUND: '#f7f7fb',
-    LANDING_BACKGROUND: {
+    BACKGROUND: {
       1: '#aeccf0',
       2: '#a2aced',
     },
