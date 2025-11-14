@@ -1095,6 +1095,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stomp/stompjs@npm:^7.2.1":
+  version: 7.2.1
+  resolution: "@stomp/stompjs@npm:7.2.1"
+  checksum: 091c7727bab1301b400146c5304dd3cd0fc72564576af56f3470eb14b02e16c6db395e98efdd723fabbdecf8a19a0dff75f5821a85c318e07a43212324585b88
+  languageName: node
+  linkType: hard
+
 "@svgr/babel-plugin-add-jsx-attribute@npm:8.0.0":
   version: 8.0.0
   resolution: "@svgr/babel-plugin-add-jsx-attribute@npm:8.0.0"
@@ -1219,6 +1226,24 @@ __metadata:
   peerDependencies:
     "@svgr/core": "*"
   checksum: 0418a9780753d3544912ee2dad5d2cf8d12e1ba74df8053651b3886aeda54d5f0f7d2dece0af5e0d838332c4f139a57f0dabaa3ca1afa4d1a765efce6a7656f2
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:5.90.12":
+  version: 5.90.12
+  resolution: "@tanstack/query-core@npm:5.90.12"
+  checksum: aea62bb1bdd19ac1e9f7850cfc401542bebeb0e96aefa5523c1aa3be26b2e033fe90d568b43c82c4dfd6f1dbd875449047abae651159fd32699977408fc16e93
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.90.10":
+  version: 5.90.12
+  resolution: "@tanstack/react-query@npm:5.90.12"
+  dependencies:
+    "@tanstack/query-core": 5.90.12
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: eeedf9c6d110bb6a86b196e9a05c522f1649f323a1ef8c69cf801b853fc2f3e86fdd2ea2cdcc086250e8c170c49308fb88f7d9c8277e15737786890275a27493
   languageName: node
   linkType: hard
 
@@ -2087,6 +2112,17 @@ __metadata:
   version: 4.10.3
   resolution: "axe-core@npm:4.10.3"
   checksum: e89fa5bcad9216f2de29bbdf95d6211d8c5b1025cbdcf56b6695c18b2e9a1eebd0b997a0141334169f6f062fc68fd39a5b97f86348d9f5be05958eade5c1ec78
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.13.2":
+  version: 1.13.2
+  resolution: "axios@npm:1.13.2"
+  dependencies:
+    follow-redirects: ^1.15.6
+    form-data: ^4.0.4
+    proxy-from-env: ^1.1.0
+  checksum: 057d0204d5930e2969f0bccb9f0752745b1524a36994667833195e7e1a82f245d660752ba8517b2dbea17e9e4ed0479f10b80c5fe45edd0b5a0df645c0060386
   languageName: node
   linkType: hard
 
@@ -4223,6 +4259,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jotai@npm:^2.15.1":
+  version: 2.15.2
+  resolution: "jotai@npm:2.15.2"
+  peerDependencies:
+    "@babel/core": ">=7.0.0"
+    "@babel/template": ">=7.0.0"
+    "@types/react": ">=17.0.0"
+    react: ">=17.0.0"
+  peerDependenciesMeta:
+    "@babel/core":
+      optional: true
+    "@babel/template":
+      optional: true
+    "@types/react":
+      optional: true
+    react:
+      optional: true
+  checksum: 73dd5589fbc75bc5bf195a9589964cc2acfd108426f926abcea2d73b350f17dc5088f5b49ea7999e73e7ead816d69c354c9db5fdfdfb73da8c01168fbe0c7bc6
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -5152,6 +5209,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-is@npm:^19.1.1":
+  version: 19.2.1
+  resolution: "react-is@npm:19.2.1"
+  checksum: 5ac92059d91805eae21db17ebab3d722a4c0b66539ce9edeb89566d5e20f71b7438e6ca9598c9a2fa7669a869c464dd8567c19410d0f0759767a97aa7a17b793
+  languageName: node
+  linkType: hard
+
 "react-refresh@npm:^0.17.0":
   version: 0.17.0
   resolution: "react-refresh@npm:0.17.0"
@@ -5959,6 +6023,8 @@ __metadata:
     "@eslint/js": ^9.33.0
     "@ffmpeg/ffmpeg": ^0.12.15
     "@ffmpeg/util": ^0.12.2
+    "@stomp/stompjs": ^7.2.1
+    "@tanstack/react-query": ^5.90.10
     "@testing-library/dom": ^10.4.1
     "@testing-library/jest-dom": ^6.8.0
     "@testing-library/react": ^16.3.0
@@ -5969,6 +6035,7 @@ __metadata:
     "@vitejs/plugin-react": ^5.0.0
     "@vitest/coverage-v8": ^3.2.4
     "@vitest/ui": ^3.2.4
+    axios: ^1.13.2
     eslint: 8.57.0
     eslint-config-airbnb: ^19.0.4
     eslint-config-airbnb-typescript: ^18.0.0
@@ -5981,13 +6048,16 @@ __metadata:
     eslint-plugin-react-hooks: ^5.2.0
     eslint-plugin-react-refresh: ^0.4.20
     globals: ^16.3.0
+    jotai: ^2.15.1
     jsdom: ^26.1.0
     prettier: ^3.6.2
     react: ^19.1.1
     react-dom: ^19.1.1
+    react-is: ^19.1.1
     react-router-dom: ^7.8.2
     typescript: ~5.8.3
     typescript-eslint: ^8.39.1
+    uuid: ^13.0.0
     vite: ^7.1.2
     vite-plugin-mkcert: ^1.17.8
     vite-plugin-svgr: ^4.5.0
@@ -6359,6 +6429,15 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "uuid@npm:13.0.0"
+  bin:
+    uuid: dist-node/bin/uuid
+  checksum: 7510ee1ab371be5339ef26ff8cabc2f4a2c60640ff880652968f758072f53bd4f4af1c8b0e671a8c9bb29ef926a24dec3ef0e3861d78183b39291a85743a9f96
   languageName: node
   linkType: hard
 
