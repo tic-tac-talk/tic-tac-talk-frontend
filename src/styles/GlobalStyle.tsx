@@ -1,13 +1,44 @@
 import { Global, css } from '@emotion/react';
+import BackgroundImage from '@/assets/images/landing-background.webp';
+import { MEDIA_QUERIES } from '@/constants';
 import theme from '@/styles/theme';
 
 const globalStyles = css`
   @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 
+  @font-face {
+    font-family: 'KakaoBigFont';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-Bold.woff2')
+      format('woff2');
+    font-display: swap;
+  }
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:
+      'Pretendard Variable',
+      Pretendard,
+      -apple-system,
+      BlinkMacSystemFont,
+      system-ui,
+      Roboto,
+      'Helvetica Neue',
+      'Segoe UI',
+      'Apple SD Gothic Neo',
+      'Noto Sans KR',
+      'Malgun Gothic',
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
+      sans-serif;
+    color: ${theme.COLORS.LABEL.PRIMARY};
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.03em;
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   article,
@@ -32,14 +63,12 @@ const globalStyles = css`
   blockquote,
   q {
     quotes: none;
-  }
 
-  blockquote:before,
-  blockquote:after,
-  q:before,
-  q:after {
-    content: '';
-    content: none;
+    &:before,
+    &:after {
+      content: '';
+      content: none;
+    }
   }
 
   table {
@@ -47,18 +76,22 @@ const globalStyles = css`
     border-spacing: 0;
   }
 
-  button {
+  button,
+  input,
+  textarea,
+  select {
     border: none;
     background: none;
     cursor: pointer;
     touch-action: manipulation;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
   }
 
-  input,
-  textarea,
-  select {
-    outline: none;
-    touch-action: manipulation;
+  button {
+    cursor: pointer;
   }
 
   a {
@@ -71,54 +104,26 @@ const globalStyles = css`
     height: auto;
   }
 
-  * {
-    font-family:
-      'Pretendard Variable',
-      Pretendard,
-      -apple-system,
-      BlinkMacSystemFont,
-      system-ui,
-      Roboto,
-      'Helvetica Neue',
-      'Segoe UI',
-      'Apple SD Gothic Neo',
-      'Noto Sans KR',
-      'Malgun Gothic',
-      'Apple Color Emoji',
-      'Segoe UI Emoji',
-      'Segoe UI Symbol',
-      sans-serif;
-    color: ${theme.COLORS.LABEL_PRIMARY};
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    letter-spacing: -0.025em;
-  }
-
   html {
-    font-size: clamp(14px, 2.5vw, 16px);
+    font-size: 16px;
+    height: 100%;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
   }
 
-  html,
   body {
-    background: linear-gradient(
-        ${theme.COLORS.BACKGROUND[1]},
-        ${theme.COLORS.BACKGROUND[2]}
-      )
-      fixed;
     line-height: 1.5;
-  }
-
-  button,
-  input,
-  textarea,
-  select {
-    font-family: inherit;
-    font-size: inherit;
-    letter-spacing: inherit;
+    margin: 0;
+    background-image: url(${BackgroundImage});
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
   }
 
@@ -152,29 +157,15 @@ const globalStyles = css`
     min-height: 100dvh;
   }
 
-  @media (max-width: 768px) {
+  ${MEDIA_QUERIES.MOBILE} {
     html {
       font-size: 14px;
     }
   }
-
-  @media (max-width: 768px) {
-    html {
-      font-size: 13px;
-    }
-
-    button {
-      min-height: 44px;
-    }
-
-    input,
-    textarea,
-    select {
-      min-height: 44px;
-    }
-  }
 `;
 
-export default function GlobalStyle() {
+const GlobalStyle = () => {
   return <Global styles={globalStyles} />;
-}
+};
+
+export default GlobalStyle;
