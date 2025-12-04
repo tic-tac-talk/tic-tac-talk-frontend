@@ -1,12 +1,13 @@
-import { ThemeProvider } from '@emotion/react';
-import GlobalStyle from '@/styles/GlobalStyle';
-import theme from '@/styles/theme';
+import Modal from '@/components/Modal';
+import AppProvider from '@/providers/AppProvider';
+import AppRoutes from '@/routes';
 
 const App = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-    </ThemeProvider>
+    <AppProvider>
+      <AppRoutes />
+      <Modal />
+    </AppProvider>
   );
 };
 
