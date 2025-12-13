@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { useLocation } from 'react-router-dom';
 import type { ModalState } from '@/atoms/modalAtom';
 import Button from '@/components/Button';
 import Loader from '@/components/Loader';
@@ -118,9 +119,19 @@ const SingleModal = ({ modal, onClose }: SingleModalProps) => {
 };
 
 const Modal = () => {
-  const { modals, closeModal } = useModal();
+  const { modals, closeModal, closeAllModals } = useModal();
+  const location = useLocation();
+  const prevPathname = useRef(location.pathname);
 
   const hasNonToastModal = modals.some((m) => m.isOpen && m.type !== 'toast');
+
+  useEffect(() => {
+    prevPathname.current = location.pathname;
+
+    return () => {
+      closeAllModals();
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     if (hasNonToastModal) {

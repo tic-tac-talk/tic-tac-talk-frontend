@@ -53,6 +53,11 @@ export const openModalAtom = atom(
       }
     }
 
+    const existingModal = currentModals.find((m) => m.id === modal.id);
+    if (existingModal) {
+      return;
+    }
+
     const newModal = { ...modal, isOpen: true };
     set(modalsAtom, [...currentModals, newModal]);
 
@@ -70,6 +75,9 @@ export const closeAllModalsAtom = atom(null, (get, set) => {
   set(modalsAtom, updatedModals);
 
   setTimeout(() => {
-    set(modalsAtom, []);
+    set(
+      modalsAtom,
+      get(modalsAtom).filter((m) => m.isOpen),
+    );
   }, MODAL_CONSTANTS.MODAL_CLOSE_ANIMATION_MS);
 });
