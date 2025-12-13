@@ -71,7 +71,9 @@ export const openModalAtom = atom(
 
 export const closeAllModalsAtom = atom(null, (get, set) => {
   const currentModals = get(modalsAtom);
-  const updatedModals = currentModals.map((m) => ({ ...m, isOpen: false }));
+  const updatedModals = currentModals.map((m) =>
+    m.type === 'toast' ? m : { ...m, isOpen: false },
+  );
   set(modalsAtom, updatedModals);
 
   setTimeout(() => {
