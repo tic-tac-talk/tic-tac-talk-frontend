@@ -6,7 +6,8 @@ import type {
   RatioContent,
   ParticipantNames,
 } from '@/pages/Report/types';
-import * as S from '../BaseCard.styles';
+import * as BaseS from '../BaseCard/BaseCard.styles';
+import * as S from './RatioCard.styles';
 
 interface RatioCardProps extends BaseCardProps {
   content: RatioContent;
@@ -65,7 +66,6 @@ const RatioCard = ({
           <S.MeasureButton onClick={startRevealing}>결과 확인</S.MeasureButton>
         </S.MeasurementPrompt>
       )}
-
       {(animationState === 'revealing' || animationState === 'final') && (
         <S.RatioContainer>
           <S.RatioBar>
@@ -86,16 +86,15 @@ const RatioCard = ({
           </S.RatioLabels>
         </S.RatioContainer>
       )}
-
       {showReasons && (
         <S.ReasonsContainer>
           <S.ReasonSection>
-            <S.ParticipantName>{participantNames.A}</S.ParticipantName>
-            <S.Description>{content.reasonA}</S.Description>
+            <BaseS.ParticipantName>{participantNames.A}</BaseS.ParticipantName>
+            <BaseS.Description>{content.reasonA}</BaseS.Description>
           </S.ReasonSection>
           <S.ReasonSection>
-            <S.ParticipantName>{participantNames.B}</S.ParticipantName>
-            <S.Description>{content.reasonB}</S.Description>
+            <BaseS.ParticipantName>{participantNames.B}</BaseS.ParticipantName>
+            <BaseS.Description>{content.reasonB}</BaseS.Description>
           </S.ReasonSection>
         </S.ReasonsContainer>
       )}

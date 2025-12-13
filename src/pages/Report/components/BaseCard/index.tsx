@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import FloatingImage from '@/components/FloatingImage';
-import * as S from '../BaseCard.styles';
+import * as S from './BaseCard.styles';
 
 interface BaseCardProps {
   title: string;

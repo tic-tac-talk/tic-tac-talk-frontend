@@ -5,7 +5,7 @@ import type {
   AnalysisContent,
   ParticipantNames,
 } from '@/pages/Report/types';
-import * as S from '../BaseCard.styles';
+import * as S from '../BaseCard/BaseCard.styles';
 
 interface AnalysisCardProps extends BaseCardProps {
   content: AnalysisContent;
@@ -37,7 +37,6 @@ const AnalysisCard = ({
           <S.ItemDescription>{content.emotionB}</S.ItemDescription>
         </S.Item>
       </S.ItemList>
-
       <S.SectionTitle>톤 분석</S.SectionTitle>
       <S.ItemList>
         <S.Item>
@@ -53,7 +52,6 @@ const AnalysisCard = ({
           <S.ItemDescription>{content.overall}</S.ItemDescription>
         </S.Item>
       </S.ItemList>
-
       <S.SectionTitle>논리 분석</S.SectionTitle>
       <S.ItemList>
         <S.Item>

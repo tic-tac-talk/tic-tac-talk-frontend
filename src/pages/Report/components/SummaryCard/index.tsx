@@ -1,7 +1,7 @@
 import SummaryImage from '@/assets/images/summary.png';
 import BaseCard from '@/pages/Report/components/BaseCard';
 import type { BaseCardProps, SummaryContent } from '@/pages/Report/types';
-import * as S from '../BaseCard.styles';
+import * as S from '../BaseCard/BaseCard.styles';
 
 interface SummaryCardProps extends BaseCardProps {
   content: SummaryContent;

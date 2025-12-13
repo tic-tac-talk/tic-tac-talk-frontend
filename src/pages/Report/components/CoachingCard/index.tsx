@@ -5,7 +5,7 @@ import type {
   CoachingContent,
   ParticipantNames,
 } from '@/pages/Report/types';
-import * as S from '../BaseCard.styles';
+import * as S from './CoachingCard.styles';
 
 interface CoachingCardProps extends BaseCardProps {
   content: CoachingContent;
@@ -34,7 +34,6 @@ const CoachingCard = ({
           ))}
         </S.AdviceList>
       </S.ParticipantSection>
-
       <S.ParticipantSection>
         <S.ParticipantName>{participantNames.B} 님에게</S.ParticipantName>
         <S.AdviceList>

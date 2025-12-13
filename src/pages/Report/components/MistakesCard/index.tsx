@@ -5,7 +5,8 @@ import type {
   MistakesContent,
   ParticipantNames,
 } from '@/pages/Report/types';
-import * as S from '../BaseCard.styles';
+import * as BaseS from '../BaseCard/BaseCard.styles';
+import * as S from './MistakesCard.styles';
 
 interface MistakesCardProps extends BaseCardProps {
   content: MistakesContent;
@@ -71,23 +72,25 @@ const MistakesCard = ({
           ))}
         </tbody>
       </S.Table>
-
-      <S.SectionTitle>상세 설명</S.SectionTitle>
-      <S.ItemList>
+      <BaseS.SectionTitle>상세 설명</BaseS.SectionTitle>
+      <BaseS.ItemList>
         {content.mistakes.map((mistake) => (
-          <S.Item key={`${mistake.type}-detail`} id={`mistake-${mistake.type}`}>
-            <S.ItemTitle>{mistake.type}</S.ItemTitle>
-            <S.ItemDescription>
+          <BaseS.Item
+            key={`${mistake.type}-detail`}
+            id={`mistake-${mistake.type}`}
+          >
+            <BaseS.ItemTitle>{mistake.type}</BaseS.ItemTitle>
+            <BaseS.ItemDescription>
               <strong>정의</strong>
               {mistake.definition}
-            </S.ItemDescription>
-            <S.ItemDescription>
+            </BaseS.ItemDescription>
+            <BaseS.ItemDescription>
               <strong>근거</strong>
               {mistake.evidence}
-            </S.ItemDescription>
-          </S.Item>
+            </BaseS.ItemDescription>
+          </BaseS.Item>
         ))}
-      </S.ItemList>
+      </BaseS.ItemList>
     </BaseCard>
   );
 };

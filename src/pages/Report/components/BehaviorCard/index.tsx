@@ -1,7 +1,7 @@
 import BehaviorImage from '@/assets/images/behavior.png';
 import BaseCard from '@/pages/Report/components/BaseCard';
 import type { BaseCardProps, BehaviorContent } from '@/pages/Report/types';
-import * as S from '../BaseCard.styles';
+import * as S from '../BaseCard/BaseCard.styles';
 
 interface BehaviorCardProps extends BaseCardProps {
   content: BehaviorContent;
@@ -29,7 +29,6 @@ const BehaviorCard = ({
           </S.Item>
         ))}
       </S.ItemList>
-
       <S.SectionTitle>대화 행동</S.SectionTitle>
       <S.ItemList>
         {content.skills.map((skill) => (
