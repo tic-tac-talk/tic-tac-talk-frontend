@@ -126,11 +126,11 @@ const Modal = () => {
   const hasNonToastModal = modals.some((m) => m.isOpen && m.type !== 'toast');
 
   useEffect(() => {
-    prevPathname.current = location.pathname;
-
-    return () => {
+    if (prevPathname.current !== location.pathname) {
       closeAllModals();
-    };
+    }
+    prevPathname.current = location.pathname;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   useEffect(() => {
