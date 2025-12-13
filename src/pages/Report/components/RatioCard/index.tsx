@@ -20,7 +20,6 @@ const RatioCard = ({
   title,
   content,
   participantNames,
-  hasBeenActivated = false,
   isActive = true,
 }: RatioCardProps) => {
   const [animationState, setAnimationState] =
@@ -54,12 +53,7 @@ const RatioCard = ({
   };
 
   return (
-    <BaseCard
-      title={title}
-      imageSrc={JudgeImage}
-      hasBeenActivated={hasBeenActivated}
-      isActive={isActive}
-    >
+    <BaseCard title={title} imageSrc={JudgeImage} isActive={isActive}>
       {animationState === 'initial' && (
         <S.MeasurementPrompt>
           <S.PromptText>틱택톡이 분석한 과실 비율은 얼마일까요?</S.PromptText>

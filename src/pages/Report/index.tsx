@@ -40,7 +40,6 @@ const Report = () => {
     currentCardIndex,
     offset,
     isTransitioning,
-    activatedCards,
     containerRef,
     handlers,
     goToNext,
@@ -130,7 +129,6 @@ const Report = () => {
               {renderCard({
                 card,
                 participantNames,
-                hasBeenActivated: activatedCards.has(index),
                 isActive: index === currentCardIndex,
               })}
             </S.CardSlide>

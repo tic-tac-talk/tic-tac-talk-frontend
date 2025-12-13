@@ -16,16 +16,10 @@ const CoachingCard = ({
   title,
   content,
   participantNames,
-  hasBeenActivated = false,
   isActive = true,
 }: CoachingCardProps) => {
   return (
-    <BaseCard
-      title={title}
-      imageSrc={SuggestionImage}
-      hasBeenActivated={hasBeenActivated}
-      isActive={isActive}
-    >
+    <BaseCard title={title} imageSrc={SuggestionImage} isActive={isActive}>
       <S.ParticipantSection>
         <S.ParticipantName>{participantNames.A} 님에게</S.ParticipantName>
         <S.AdviceList>

@@ -10,19 +10,16 @@ import type { ReportCard, ParticipantNames } from '@/pages/Report/types';
 interface RenderCardProps {
   card: ReportCard;
   participantNames: ParticipantNames;
-  hasBeenActivated: boolean;
   isActive: boolean;
 }
 
 export const renderCard = ({
   card,
   participantNames,
-  hasBeenActivated,
   isActive,
 }: RenderCardProps): React.ReactNode => {
   const baseProps = {
     title: card.title,
-    hasBeenActivated,
     isActive,
   };
 

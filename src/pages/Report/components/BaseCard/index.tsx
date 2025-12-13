@@ -5,33 +5,21 @@ import * as S from './BaseCard.styles';
 interface BaseCardProps {
   title: string;
   imageSrc: string;
-  hasBeenActivated: boolean;
   isActive: boolean;
   children: ReactNode;
 }
 
-const BaseCard = ({
-  title,
-  imageSrc,
-  hasBeenActivated,
-  isActive,
-  children,
-}: BaseCardProps) => {
+const BaseCard = ({ title, imageSrc, isActive, children }: BaseCardProps) => {
   return (
     <S.Container isActive={isActive}>
       <S.ContentWrapper>
-        <S.FloatingImageWrapper
-          hasBeenActivated={hasBeenActivated}
-          isActive={isActive}
-        >
+        <S.FloatingImageWrapper isActive={isActive}>
           <FloatingImage src={imageSrc} />
         </S.FloatingImageWrapper>
-        <S.FixedContent hasBeenActivated={hasBeenActivated} isActive={isActive}>
+        <S.FixedContent isActive={isActive}>
           <S.Title>{title}</S.Title>
         </S.FixedContent>
-        <S.CardContent hasBeenActivated={hasBeenActivated} isActive={isActive}>
-          {children}
-        </S.CardContent>
+        <S.CardContent isActive={isActive}>{children}</S.CardContent>
       </S.ContentWrapper>
     </S.Container>
   );

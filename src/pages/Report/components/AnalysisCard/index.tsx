@@ -16,16 +16,10 @@ const AnalysisCard = ({
   title,
   content,
   participantNames,
-  hasBeenActivated = false,
   isActive = true,
 }: AnalysisCardProps) => {
   return (
-    <BaseCard
-      title={title}
-      imageSrc={AnalysisImage}
-      hasBeenActivated={hasBeenActivated}
-      isActive={isActive}
-    >
+    <BaseCard title={title} imageSrc={AnalysisImage} isActive={isActive}>
       <S.SectionTitle>감정 분석</S.SectionTitle>
       <S.ItemList>
         <S.Item>

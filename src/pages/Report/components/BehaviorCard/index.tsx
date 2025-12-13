@@ -10,16 +10,10 @@ interface BehaviorCardProps extends BaseCardProps {
 const BehaviorCard = ({
   title,
   content,
-  hasBeenActivated = false,
   isActive = true,
 }: BehaviorCardProps) => {
   return (
-    <BaseCard
-      title={title}
-      imageSrc={BehaviorImage}
-      hasBeenActivated={hasBeenActivated}
-      isActive={isActive}
-    >
+    <BaseCard title={title} imageSrc={BehaviorImage} isActive={isActive}>
       <S.SectionTitle>인지 편향</S.SectionTitle>
       <S.ItemList>
         {content.biases.map((bias) => (

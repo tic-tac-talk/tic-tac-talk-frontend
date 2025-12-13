@@ -22,16 +22,10 @@ const MistakesCard = ({
   title,
   content,
   participantNames,
-  hasBeenActivated = false,
   isActive = true,
 }: MistakesCardProps) => {
   return (
-    <BaseCard
-      title={title}
-      imageSrc={MistakeImage}
-      hasBeenActivated={hasBeenActivated}
-      isActive={isActive}
-    >
+    <BaseCard title={title} imageSrc={MistakeImage} isActive={isActive}>
       <S.Table>
         <thead>
           <S.TableRow>

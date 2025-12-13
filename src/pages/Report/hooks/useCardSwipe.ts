@@ -10,7 +10,6 @@ const useCardSwipe = ({ totalCards, onCardChange }: UseCardSwipeProps) => {
   const [offset, setOffset] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const [activatedCards, setActivatedCards] = useState(new Set([0]));
 
   const startX = useRef<number>(0);
   const startY = useRef<number>(0);
@@ -63,12 +62,10 @@ const useCardSwipe = ({ totalCards, onCardChange }: UseCardSwipeProps) => {
     if (offset > threshold && currentCardIndex > 0) {
       const newIndex = currentCardIndex - 1;
       setCurrentCardIndex(newIndex);
-      setActivatedCards((prev) => new Set([...prev, newIndex]));
       onCardChange?.(newIndex);
     } else if (offset < -threshold && currentCardIndex < totalCards - 1) {
       const newIndex = currentCardIndex + 1;
       setCurrentCardIndex(newIndex);
-      setActivatedCards((prev) => new Set([...prev, newIndex]));
       onCardChange?.(newIndex);
     }
 
@@ -148,7 +145,6 @@ const useCardSwipe = ({ totalCards, onCardChange }: UseCardSwipeProps) => {
     if (currentCardIndex < totalCards - 1) {
       const newIndex = currentCardIndex + 1;
       setCurrentCardIndex(newIndex);
-      setActivatedCards((prev) => new Set([...prev, newIndex]));
       onCardChange?.(newIndex);
     }
   };
@@ -157,7 +153,6 @@ const useCardSwipe = ({ totalCards, onCardChange }: UseCardSwipeProps) => {
     if (currentCardIndex > 0) {
       const newIndex = currentCardIndex - 1;
       setCurrentCardIndex(newIndex);
-      setActivatedCards((prev) => new Set([...prev, newIndex]));
       onCardChange?.(newIndex);
     }
   };
@@ -165,14 +160,6 @@ const useCardSwipe = ({ totalCards, onCardChange }: UseCardSwipeProps) => {
   const goToIndex = (index: number) => {
     if (index >= 0 && index < totalCards) {
       setCurrentCardIndex(index);
-      setActivatedCards((prev) => {
-        const newSet = new Set(prev);
-
-        for (let i = 0; i <= index; i += 1) {
-          newSet.add(i);
-        }
-        return newSet;
-      });
       onCardChange?.(index);
     }
   };
@@ -182,7 +169,6 @@ const useCardSwipe = ({ totalCards, onCardChange }: UseCardSwipeProps) => {
     offset,
     isTransitioning,
     isDragging,
-    activatedCards,
     containerRef,
     goToNext,
     goToPrev,

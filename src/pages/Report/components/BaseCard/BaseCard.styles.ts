@@ -76,10 +76,7 @@ export const ContentWrapper = styled.div`
   z-index: ${Z_INDEX.BASE};
 `;
 
-export const FixedContent = styled.div<{
-  hasBeenActivated: boolean;
-  isActive: boolean;
-}>`
+export const FixedContent = styled.div<{ isActive: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,10 +89,7 @@ export const FixedContent = styled.div<{
   }
 `;
 
-export const FloatingImageWrapper = styled.figure<{
-  hasBeenActivated: boolean;
-  isActive: boolean;
-}>`
+export const FloatingImageWrapper = styled.figure<{ isActive: boolean }>`
   margin-bottom: 24px;
   opacity: 1;
 
@@ -141,10 +135,7 @@ export const Subtitle = styled.h3`
   }
 `;
 
-export const CardContent = styled.div<{
-  hasBeenActivated: boolean;
-  isActive: boolean;
-}>`
+export const CardContent = styled.div<{ isActive: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;

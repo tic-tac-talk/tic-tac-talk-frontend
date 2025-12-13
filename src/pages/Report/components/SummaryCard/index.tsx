@@ -7,19 +7,9 @@ interface SummaryCardProps extends BaseCardProps {
   content: SummaryContent;
 }
 
-const SummaryCard = ({
-  title,
-  content,
-  hasBeenActivated = false,
-  isActive = true,
-}: SummaryCardProps) => {
+const SummaryCard = ({ title, content, isActive = true }: SummaryCardProps) => {
   return (
-    <BaseCard
-      title={title}
-      imageSrc={SummaryImage}
-      hasBeenActivated={hasBeenActivated}
-      isActive={isActive}
-    >
+    <BaseCard title={title} imageSrc={SummaryImage} isActive={isActive}>
       <S.Subtitle>{content.summary}</S.Subtitle>
       <S.Description>{content.participantA}</S.Description>
       <S.Description>{content.participantB}</S.Description>

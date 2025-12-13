@@ -15,7 +15,6 @@ export interface ParticipantNames {
 
 export interface BaseCardProps {
   title: string;
-  hasBeenActivated?: boolean;
   isActive?: boolean;
 }
 
