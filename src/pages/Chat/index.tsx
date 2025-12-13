@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import DefaultProfileImage from '@/assets/images/default-profile.png';
@@ -47,7 +47,7 @@ const Chat = () => {
     modal: { confirm, loading, closeModal, toast },
   });
 
-  const isScrollAtBottom = () => {
+  const isScrollAtBottom = useCallback(() => {
     const container = messagesContainerRef.current;
 
     if (!container) return false;
@@ -57,7 +57,7 @@ const Chat = () => {
       scrollTop + clientHeight >=
       scrollHeight - CHAT_CONSTANTS.SCROLL_BOTTOM_THRESHOLD_PX
     );
-  };
+  }, []);
 
   const { messages, addMessage } = useChatMessages({
     initialMessages: undefined,

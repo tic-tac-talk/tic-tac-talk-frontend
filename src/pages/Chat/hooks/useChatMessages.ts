@@ -37,7 +37,7 @@ export const useChatMessages = ({
     }
 
     setPreviousMessagesLength(messages.length);
-  });
+  }, [messages.length, isScrollAtBottom, scrollToBottom]);
 
   const addMessage = (message: Message) => {
     setMessages((prev) => [...prev, message]);
