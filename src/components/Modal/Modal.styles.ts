@@ -168,7 +168,7 @@ export const ToastContainer = styled.div<{
   isClosing?: boolean;
 }>`
   position: fixed;
-  bottom: 32px;
+  bottom: 40px;
   left: 50%;
   z-index: ${Z_INDEX.TOAST};
   animation: ${(props) => (props.isClosing ? toastSlideDown : toastSlideUp)}
@@ -192,8 +192,9 @@ export const ToastsWrapper = styled.div`
 
 export const ToastContent = styled.div`
   padding: 12px 20px;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 12px;
+  color: white;
   font-size: 14px;
   white-space: nowrap;
   box-shadow:
