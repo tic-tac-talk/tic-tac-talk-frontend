@@ -70,7 +70,7 @@ const Report = () => {
     } else {
       closeModal('loading-modal');
     }
-  }, [isLoading]);
+  }, [isLoading, loading, closeModal]);
 
   useEffect(() => {
     if (
@@ -96,7 +96,7 @@ const Report = () => {
         disableBackdropClick: true,
       });
     }
-  }, [reportData]);
+  }, [reportData, custom, closeModal]);
 
   if (isLoading) {
     return null;
