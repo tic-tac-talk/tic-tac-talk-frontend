@@ -50,7 +50,11 @@ const ChatInput = ({
           disabled={!isConnected || !otherUserJoined}
         />
       </S.InputWrapper>
-      <S.SendButton onClick={onSendMessage} disabled={!canSendMessage}>
+      <S.SendButton
+        onClick={onSendMessage}
+        onMouseDown={(e) => e.preventDefault()}
+        disabled={!canSendMessage}
+      >
         <SendIcon
           fill={canSendMessage ? theme.COLORS.INDIGO[6] : theme.COLORS.GRAY[3]}
         />

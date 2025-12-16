@@ -14,6 +14,14 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<RootRedirect />} />
       <Route path="/landing" element={<Landing />} />
+      <Route
+        path="/chat"
+        element={
+          <ProtectedRoute>
+            <Chat />
+          </ProtectedRoute>
+        }
+      />
       <Route element={<Layout />}>
         <Route path="/oauth/callback" element={<OAuthCallback />} />
         <Route
@@ -21,14 +29,6 @@ const AppRoutes = () => {
           element={
             <ProtectedRoute>
               <Recording />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/chat"
-          element={
-            <ProtectedRoute>
-              <Chat />
             </ProtectedRoute>
           }
         />

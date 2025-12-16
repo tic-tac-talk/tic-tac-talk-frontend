@@ -52,8 +52,9 @@ export const useChatActions = ({ roomId, modal }: UseChatActionsParams) => {
 
   const handleEndChatClick = (): void => {
     modal.confirm({
-      title: '대화 종료',
-      content: '대화를 종료하시겠어요?',
+      title: '채팅 종료',
+      content:
+        '채팅을 종료하면 상대와의 연결이 해제되며, 이 채팅방에서는 대화를 이어갈 수 없습니다. 종료 후 대화 분석이 시작됩니다.',
       confirmText: '종료',
       cancelText: '취소',
       onConfirm: handleEndChat,

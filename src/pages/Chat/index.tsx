@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import DefaultProfileImage from '@/assets/images/default-profile.png';
+import BackIcon from '@/assets/icons/back-arrow.svg?react';
 import { CHAT_CONSTANTS } from '@/constants';
 import { useEndChat, useGetChatMessages } from '@/hooks/useChat';
 import { useChatWebSocket } from '@/hooks/useChatWebSocket';
-import useKeyboardHeight from '@/hooks/useKeyboardHeight';
 import useModal from '@/hooks/useModal';
 import * as S from '@/pages/Chat/Chat.styles';
 import ChatInput from '@/pages/Chat/components/ChatInput';
@@ -36,8 +35,6 @@ const Chat = () => {
 
   const { messagesEndRef, messagesContainerRef, scrollToBottom } =
     useMessageScroll();
-
-  const keyboardHeight = useKeyboardHeight(messagesContainerRef);
 
   const { otherUserName, otherUserProfileUrl, updateParticipant } =
     useChatParticipant();
@@ -139,19 +136,18 @@ const Chat = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate('/');
+  };
+
   return (
-    <S.Container $keyboardHeight={keyboardHeight}>
+    <S.Container>
       <S.ChatContainer>
         <S.Header>
           <S.HeaderLeft>
-            {otherUserName && (
-              <S.ProfileWrapper>
-                <S.ProfileImage
-                  src={otherUserProfileUrl || DefaultProfileImage}
-                  alt={otherUserName}
-                />
-              </S.ProfileWrapper>
-            )}
+            <S.BackButton onClick={handleBack}>
+              <BackIcon />
+            </S.BackButton>
             <S.HeaderTitle>
               {otherUserName || '상대 접속 대기 중'}
             </S.HeaderTitle>
@@ -217,14 +213,16 @@ const Chat = () => {
           ))}
           <div ref={messagesEndRef} />
         </MessagesS.Container>
-        <ChatInput
-          messageText={messageText}
-          isConnected={isConnected}
-          otherUserJoined={!!otherUserName}
-          onMessageChange={setMessageText}
-          onSendMessage={handleSendMessage}
-          onKeyDown={handleKeyDown}
-        />
+        <S.InputWrapper>
+          <ChatInput
+            messageText={messageText}
+            isConnected={isConnected}
+            otherUserJoined={!!otherUserName}
+            onMessageChange={setMessageText}
+            onSendMessage={handleSendMessage}
+            onKeyDown={handleKeyDown}
+          />
+        </S.InputWrapper>
       </S.ChatContainer>
     </S.Container>
   );
