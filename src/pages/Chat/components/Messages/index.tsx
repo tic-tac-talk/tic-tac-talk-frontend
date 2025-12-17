@@ -1,7 +1,7 @@
 import DefaultProfileImage from '@/assets/images/default-profile.png';
 import * as S from '@/pages/Chat/components/Messages/Messages.styles';
 import type { Message } from '@/types/Chat';
-import { formatTime } from '@/utils/format';
+import { formatTime } from '@/utils/formatters';
 
 interface MessageProps {
   message: Message;

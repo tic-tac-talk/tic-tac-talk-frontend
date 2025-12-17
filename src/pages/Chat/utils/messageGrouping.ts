@@ -1,6 +1,6 @@
 import { CHAT_CONSTANTS } from '@/constants';
 import type { Message } from '@/types/Chat';
-import { formatDate } from '@/utils/format';
+import { formatDate } from '@/utils/formatters';
 
 type BubblePosition = 'single' | 'first' | 'middle' | 'last';
 

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import DefaultProfileImage from '@/assets/images/default-profile.png';
 import { userAtom } from '@/atoms/userAtom';
 import type { SidebarProps } from '@/types/Main';
-import { formatDate } from '@/utils/format';
+import { formatDate } from '@/utils/formatters';
 import ProfileMenu from './components/ProfileMenu';
 import * as S from './Sidebar.styles';
 
