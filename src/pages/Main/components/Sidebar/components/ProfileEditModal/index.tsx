@@ -4,6 +4,7 @@ import DefaultProfileImage from '@/assets/images/default-profile.png';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import useModal from '@/hooks/useModal';
+import convertImageToJpeg from '@/utils/convertImageToJpeg';
 import * as S from './ProfileEditModal.styles';
 
 interface ProfileEditModalProps {
@@ -32,7 +33,7 @@ const ProfileEditModal = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { alert } = useModal();
+  const { alert, toast } = useModal();
 
   useEffect(() => {
     if (initialNickname) {
@@ -66,7 +67,7 @@ const ProfileEditModal = ({
     setNickname(e.target.value);
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const supportedTypes = [
@@ -82,22 +83,29 @@ const ProfileEditModal = ({
         !supportedTypes.includes(file.type.toLowerCase()) &&
         !file.name.match(/\.(heic|heif)$/i)
       ) {
-        alert({
-          title: '이미지 형식 오류',
+        toast({
           content: '지원하지 않는 형식의 이미지 파일입니다.',
         });
         return;
       }
 
-      setImageFile(file);
-      setIsImageDeleted(false);
+      try {
+        const processedFile = await convertImageToJpeg(file);
 
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewUrl(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-      setIsDropdownOpen(false);
+        setImageFile(processedFile);
+        setIsImageDeleted(false);
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setPreviewUrl(reader.result as string);
+        };
+        reader.readAsDataURL(processedFile);
+        setIsDropdownOpen(false);
+      } catch {
+        toast({
+          content: '이미지를 처리하는 중 오류가 발생했습니다.',
+        });
+      }
     }
   };
 
