@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter as Router } from 'react-router-dom';
+import GlobalErrorBoundary from '@/components/GlobalErrorBoundary';
 import UserProvider from '@/components/UserProvider';
 import { queryClient } from '@/config/queryClient';
 import GlobalStyle from '@/styles/GlobalStyle';
@@ -17,7 +18,9 @@ const AppProvider = ({ children }: AppProviderProps) => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <UserProvider>
-          <Router>{children}</Router>
+          <GlobalErrorBoundary>
+            <Router>{children}</Router>
+          </GlobalErrorBoundary>
         </UserProvider>
       </ThemeProvider>
     </QueryClientProvider>
