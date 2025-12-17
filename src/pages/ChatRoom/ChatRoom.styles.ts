@@ -16,42 +16,42 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
-  background: white;
-  border-radius: 24px;
-  padding: 48px;
-  max-width: 600px;
   width: 100%;
+  max-width: 600px;
+  padding: 48px;
+  background-color: white;
+  border-radius: 24px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
   animation: ${fadeInUp} 0.6s ease-out;
 
   ${MEDIA_QUERIES.MOBILE} {
-    padding: 32px 24px;
+    padding: 32px;
   }
 `;
 
 export const Title = styled.h1`
+  margin-bottom: 4px;
   font-size: 1.6rem;
   font-weight: 700;
-  margin-bottom: 4px;
   text-align: center;
 `;
 
 export const Description = styled.p`
-  font-size: 1.1rem;
-  color: ${({ theme }) => theme.COLORS.LABEL.SECONDARY};
-  text-align: center;
   margin-bottom: 20px;
+  color: ${({ theme }) => theme.COLORS.LABEL.SECONDARY};
+  font-size: 1.1rem;
+  text-align: center;
 `;
 
 export const UrlContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 4px;
-  background: ${({ theme }) => theme.COLORS.GRAY[0]};
-  border: 1px solid ${({ theme }) => theme.COLORS.GRAY[2]};
-  border-radius: 12px;
   padding: 16px;
   margin-bottom: 12px;
+  gap: 4px;
+  background-color: ${({ theme }) => theme.COLORS.GRAY[0]};
+  border: 1px solid ${({ theme }) => theme.COLORS.GRAY[2]};
+  border-radius: 12px;
 `;
 
 export const UrlText = styled.p`
@@ -68,8 +68,8 @@ export const CopyButton = styled.button`
   justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: 8px;
   color: ${({ theme }) => theme.COLORS.LABEL.SECONDARY};
+  border-radius: 8px;
   transition: all 0.2s ease;
 
   &:hover {
@@ -87,7 +87,7 @@ export const CopyButton = styled.button`
   }
 `;
 
-export const ButtonGroup = styled.div`
+export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 8px;
 `;

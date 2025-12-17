@@ -74,14 +74,14 @@ const ChatRoom = () => {
             <CopyIcon />
           </S.CopyButton>
         </S.UrlContainer>
-        <S.ButtonGroup>
+        <S.ButtonsWrapper>
           <Button fullWidth variant="secondary" onClick={handleShare}>
             공유하기
           </Button>
           <Button fullWidth onClick={handleEnterRoom}>
             채팅방 입장하기
           </Button>
-        </S.ButtonGroup>
+        </S.ButtonsWrapper>
       </S.Card>
     </S.Container>
   );
