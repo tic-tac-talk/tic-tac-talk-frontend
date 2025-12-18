@@ -1,6 +1,3 @@
-import imageCompression from 'browser-image-compression';
-import { heicTo } from 'heic-to/csp';
-
 const IMAGE_CONSTANTS = {
   HEIC_QUALITY: 0.9,
   MAX_SIZE_MB: 2,
@@ -11,6 +8,11 @@ const IMAGE_CONSTANTS = {
 } as const;
 
 const convertImageToJpeg = async (file: File): Promise<File> => {
+  const [imageCompression, { heicTo }] = await Promise.all([
+    import('browser-image-compression').then((m) => m.default),
+    import('heic-to/csp'),
+  ]);
+
   let processFile = file;
 
   if (
