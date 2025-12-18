@@ -13,7 +13,11 @@ const OAuthCallback = () => {
       if (accessToken) {
         storageService.setAccessToken(accessToken);
         window.history.replaceState({}, '', window.location.pathname);
-        navigate('/', { replace: true });
+
+        const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
+        sessionStorage.removeItem('redirectAfterLogin');
+
+        navigate(redirectUrl || '/', { replace: true });
       }
     };
 

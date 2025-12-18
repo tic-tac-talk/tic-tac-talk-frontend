@@ -13,6 +13,10 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const hasToken = storageService.hasAccessToken();
 
   if (!hasToken) {
+    sessionStorage.setItem(
+      'redirectAfterLogin',
+      window.location.pathname + window.location.search,
+    );
     return <Navigate to="/landing" replace />;
   }
 
