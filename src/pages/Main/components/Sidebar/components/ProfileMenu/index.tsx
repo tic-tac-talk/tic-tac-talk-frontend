@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, lazy } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
 import { useNavigate } from 'react-router-dom';
@@ -8,9 +8,8 @@ import EditIcon from '@/assets/icons/user-edit.svg?react';
 import { userAtom } from '@/atoms/userAtom';
 import { useLogout, useUpdateUserInfo } from '@/hooks/useAuth';
 import useModal from '@/hooks/useModal';
+import ProfileEditModal from '../ProfileEditModal';
 import * as S from './ProfileMenu.styles';
-
-const ProfileEditModal = lazy(() => import('../ProfileEditModal'));
 
 interface ProfileMenuProps {
   onCloseSidebar: () => void;

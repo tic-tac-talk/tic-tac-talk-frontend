@@ -1,18 +1,15 @@
-import { useEffect, useMemo, lazy } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import BackIcon from '@/assets/icons/back.svg?react';
 import ForwardIcon from '@/assets/icons/forward.svg?react';
+import UpdateReportNameModal from '@/components/UpdateReportNameModal';
 import useModal from '@/hooks/useModal';
 import { useReport } from '@/hooks/useReport';
 import useCardSwipe from '@/pages/Report/hooks/useCardSwipe';
 import * as S from '@/pages/Report/Report.styles';
 import { mapAPICardToReportCard } from '@/pages/Report/utils/mappers';
 import { renderCard } from '@/pages/Report/utils/renderCard';
-
-const UpdateReportNameModal = lazy(
-  () => import('@/components/UpdateReportNameModal'),
-);
 
 const Report = () => {
   const [searchParams] = useSearchParams();
