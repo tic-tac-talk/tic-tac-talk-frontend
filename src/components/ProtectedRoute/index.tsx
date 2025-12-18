@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAtomValue } from 'jotai';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { userAtom } from '@/atoms/userAtom';
 import { storageService } from '@/services/storage';
 
@@ -11,11 +11,12 @@ interface ProtectedRouteProps {
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const user = useAtomValue(userAtom);
   const hasToken = storageService.hasAccessToken();
+  const location = useLocation();
 
   if (!hasToken) {
     sessionStorage.setItem(
       'redirectAfterLogin',
-      window.location.pathname + window.location.search,
+      location.pathname + location.search,
     );
     return <Navigate to="/landing" replace />;
   }
