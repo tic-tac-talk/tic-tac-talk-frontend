@@ -1,34 +1,37 @@
 import { useEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
+import { getUserProfile } from '@/apis/auth/authApi';
 import { userAtom } from '@/atoms/userAtom';
-import { useGetUserProfile } from '@/hooks/useAuth';
 import { storageService } from '@/services/storage';
 
 const OAuthCallback = () => {
   const navigate = useNavigate();
   const setUser = useSetAtom(userAtom);
-  const { data: userProfile, isSuccess } = useGetUserProfile();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const accessToken = params.get('access-token');
+    const handleOAuthCallback = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const accessToken = params.get('access-token');
 
-    if (accessToken) {
-      storageService.setAccessToken(accessToken);
-      window.history.replaceState({}, '', window.location.pathname);
-    }
-  }, []);
+      if (accessToken) {
+        storageService.setAccessToken(accessToken);
+        window.history.replaceState({}, '', window.location.pathname);
 
-  useEffect(() => {
-    if (isSuccess && userProfile) {
-      setUser(userProfile);
+        const userProfile = await getUserProfile();
+        queryClient.setQueryData(['userProfile'], userProfile);
+        setUser(userProfile);
 
-      const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
-      sessionStorage.removeItem('redirectAfterLogin');
-      navigate(redirectUrl || '/', { replace: true });
-    }
-  }, [isSuccess, userProfile, setUser, navigate]);
+        const redirectUrl = sessionStorage.getItem('redirectAfterLogin');
+        sessionStorage.removeItem('redirectAfterLogin');
+        navigate(redirectUrl || '/', { replace: true });
+      }
+    };
+
+    handleOAuthCallback();
+  }, [setUser, navigate, queryClient]);
 
   return null;
 };
