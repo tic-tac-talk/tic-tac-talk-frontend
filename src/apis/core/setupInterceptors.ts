@@ -26,7 +26,7 @@ const showSessionExpiredAlert = (): void => {
     title: '세션 만료',
     content: '로그인 세션이 만료되었습니다. 다시 로그인해주세요.',
     onConfirm: () => {
-      window.location.href = '/login';
+      window.location.href = '/landing';
     },
   });
 };
