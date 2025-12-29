@@ -86,8 +86,10 @@ const Report = () => {
             reportId={reportData.id}
             chatData={reportData.chatData}
             onClose={() => closeModal(modalId)}
-            onSuccess={(updatedData) => {
-              queryClient.setQueryData(['report', reportId || ''], updatedData);
+            onSuccess={() => {
+              queryClient.invalidateQueries({
+                queryKey: ['report', reportId || ''],
+              });
             }}
           />
         ),

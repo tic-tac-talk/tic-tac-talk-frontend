@@ -94,10 +94,3 @@ export interface UpdateReportUserNameRequest {
   selectedSpeaker: 'A' | 'B';
   otherUserName: string;
 }
-
-export interface UpdateReportUserNameResponse {
-  id: string;
-  user1Name: string;
-  user2Name: string;
-  isNameUpdated: boolean;
-}

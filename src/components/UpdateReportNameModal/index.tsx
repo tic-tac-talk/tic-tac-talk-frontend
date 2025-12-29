@@ -3,14 +3,14 @@ import { updateReportUserName } from '@/apis/report/reportApi';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import useModal from '@/hooks/useModal';
-import type { ChatMessage, UpdateReportUserNameResponse } from '@/types/api';
+import type { ChatMessage } from '@/types/api';
 import * as S from './UpdateReportNameModal.styles';
 
 interface UpdateReportNameModalProps {
   reportId: string;
   chatData: ChatMessage[];
   onClose: () => void;
-  onSuccess: (updatedData: UpdateReportUserNameResponse) => void;
+  onSuccess: () => void;
 }
 
 interface SpeakerSelectionProps {
@@ -159,14 +159,14 @@ const UpdateReportNameModal = ({
         disableBackdropClick: true,
       });
 
-      const response = await updateReportUserName(reportId, {
+      await updateReportUserName(reportId, {
         selectedSpeaker,
         otherUserName,
       });
 
       closeModal('loading-modal');
       onClose();
-      onSuccess(response.data);
+      onSuccess();
     } catch {
       closeModal('loading-modal');
       alert({

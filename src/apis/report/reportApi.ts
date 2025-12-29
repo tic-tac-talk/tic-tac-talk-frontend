@@ -5,7 +5,6 @@ import type {
   Report,
   ReportSummary,
   UpdateReportUserNameRequest,
-  UpdateReportUserNameResponse,
 } from '@/types/api';
 
 export interface GetReportsParams {
@@ -41,9 +40,10 @@ export const getReportById = async (
 export const updateReportUserName = async (
   id: string,
   data: UpdateReportUserNameRequest,
-): Promise<ApiResponse<UpdateReportUserNameResponse>> => {
-  const response = await apiClient.patch<
-    ApiResponse<UpdateReportUserNameResponse>
-  >(`/rag/report/${id}/user-name`, data);
+): Promise<ApiResponse<Report>> => {
+  const response = await apiClient.patch<ApiResponse<Report>>(
+    `/rag/report/${id}/user-name`,
+    data,
+  );
   return response.data;
 };
