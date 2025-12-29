@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import BackIcon from '@/assets/icons/back.svg?react';
@@ -10,6 +10,7 @@ import useCardSwipe from '@/pages/Report/hooks/useCardSwipe';
 import * as S from '@/pages/Report/Report.styles';
 import { mapAPICardToReportCard } from '@/pages/Report/utils/mappers';
 import { renderCard } from '@/pages/Report/utils/renderCard';
+import type { UpdateReportUserNameResponse } from '@/types/api';
 
 const Report = () => {
   const [searchParams] = useSearchParams();
@@ -61,6 +62,29 @@ const Report = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [goToNext, goToPrev]);
 
+  const handleUpdateReportName = useCallback(
+    (updatedData: UpdateReportUserNameResponse) => {
+      if (!reportData?.data) return;
+
+      queryClient.setQueryData(
+        ['report', reportData.data.id],
+        (oldData: typeof reportData) => {
+          if (!oldData) return oldData;
+          return {
+            ...oldData,
+            data: {
+              ...oldData.data,
+              user1Name: updatedData.user1Name,
+              user2Name: updatedData.user2Name,
+              isNameUpdated: updatedData.isNameUpdated,
+            },
+          };
+        },
+      );
+    },
+    [reportData, queryClient],
+  );
+
   useEffect(() => {
     if (isLoading) {
       loading({
@@ -86,17 +110,13 @@ const Report = () => {
             reportId={reportData.data.id}
             chatData={reportData.data.chatData}
             onClose={() => closeModal(modalId)}
-            onSuccess={() => {
-              queryClient.invalidateQueries({
-                queryKey: ['report', reportData.data.id],
-              });
-            }}
+            onSuccess={handleUpdateReportName}
           />
         ),
         disableBackdropClick: true,
       });
     }
-  }, [reportData, custom, closeModal, queryClient]);
+  }, [reportData, custom, closeModal, handleUpdateReportName]);
 
   if (isLoading) {
     return null;
