@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import BackIcon from '@/assets/icons/back.svg?react';
@@ -10,7 +10,6 @@ import useCardSwipe from '@/pages/Report/hooks/useCardSwipe';
 import * as S from '@/pages/Report/Report.styles';
 import { mapAPICardToReportCard } from '@/pages/Report/utils/mappers';
 import { renderCard } from '@/pages/Report/utils/renderCard';
-import type { UpdateReportUserNameResponse } from '@/types/api';
 
 const Report = () => {
   const [searchParams] = useSearchParams();
@@ -21,17 +20,17 @@ const Report = () => {
   const { data: reportData, isLoading } = useReport(reportId || '', !!reportId);
 
   const reportCards = useMemo(() => {
-    if (reportData?.data?.reportCards) {
-      return reportData.data.reportCards.map(mapAPICardToReportCard);
+    if (reportData?.reportCards) {
+      return reportData.reportCards.map(mapAPICardToReportCard);
     }
     return [];
   }, [reportData]);
 
   const participantNames = useMemo(() => {
-    if (reportData?.data) {
+    if (reportData) {
       return {
-        A: reportData.data.user1Name,
-        B: reportData.data.user2Name,
+        A: reportData.user1Name,
+        B: reportData.user2Name,
       };
     }
     return { A: '', B: '' };
@@ -62,29 +61,6 @@ const Report = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [goToNext, goToPrev]);
 
-  const handleUpdateReportName = useCallback(
-    (updatedData: UpdateReportUserNameResponse) => {
-      if (!reportData?.data) return;
-
-      queryClient.setQueryData(
-        ['report', reportData.data.id],
-        (oldData: typeof reportData) => {
-          if (!oldData) return oldData;
-          return {
-            ...oldData,
-            data: {
-              ...oldData.data,
-              user1Name: updatedData.user1Name,
-              user2Name: updatedData.user2Name,
-              isNameUpdated: updatedData.isNameUpdated,
-            },
-          };
-        },
-      );
-    },
-    [reportData, queryClient],
-  );
-
   useEffect(() => {
     if (isLoading) {
       loading({
@@ -98,25 +74,28 @@ const Report = () => {
 
   useEffect(() => {
     if (
-      reportData?.data &&
-      reportData.data.sourceType === 'VOICE' &&
-      reportData.data.isNameUpdated === false
+      reportData &&
+      reportData.sourceType === 'VOICE' &&
+      reportData.isNameUpdated === false
     ) {
       const modalId = 'update-report-name-modal';
       custom({
         id: modalId,
         component: (
           <UpdateReportNameModal
-            reportId={reportData.data.id}
-            chatData={reportData.data.chatData}
+            reportId={reportData.id}
+            chatData={reportData.chatData}
             onClose={() => closeModal(modalId)}
-            onSuccess={handleUpdateReportName}
+            onSuccess={(updatedData) => {
+              queryClient.setQueryData(['report', reportId || ''], updatedData);
+            }}
           />
         ),
         disableBackdropClick: true,
       });
     }
-  }, [reportData, custom, closeModal, handleUpdateReportName]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reportData?.id, reportData?.sourceType, reportData?.isNameUpdated]);
 
   if (isLoading) {
     return null;

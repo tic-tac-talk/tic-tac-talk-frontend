@@ -22,6 +22,7 @@ export const useReport = (id: string, enabled = true) => {
   return useQuery({
     queryKey: ['report', id],
     queryFn: () => getReportById(id),
+    select: (response) => response.data,
     enabled: enabled && !!id,
   });
 };
