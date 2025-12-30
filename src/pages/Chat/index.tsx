@@ -173,10 +173,14 @@ const Chat = () => {
                     ? dayMessages[index + 1]
                     : null;
 
-                const currentTime = new Date(message.sentAt).getTime();
-                const nextTime = nextMessage
-                  ? new Date(nextMessage.sentAt).getTime()
+                const currentTimeForDisplay = new Date(
+                  message.sentAt,
+                ).setSeconds(0, 0);
+                const nextTimeForDisplay = nextMessage
+                  ? new Date(nextMessage.sentAt).setSeconds(0, 0)
                   : 0;
+
+                const currentTime = new Date(message.sentAt).getTime();
                 const prevTime = prevMessage
                   ? new Date(prevMessage.sentAt).getTime()
                   : 0;
@@ -184,12 +188,13 @@ const Chat = () => {
                 const shouldShowTime =
                   !nextMessage ||
                   nextMessage.isOwn !== message.isOwn ||
-                  nextTime - currentTime >= 60 * 1000;
+                  nextTimeForDisplay - currentTimeForDisplay >= 60 * 1000;
 
                 const isNewMessageGroup =
                   !prevMessage ||
                   prevMessage.isOwn !== message.isOwn ||
-                  currentTime - prevTime >= 60 * 1000;
+                  currentTime - prevTime >=
+                    CHAT_CONSTANTS.MESSAGE_GROUP_TIME_THRESHOLD_MS;
 
                 const shouldShowSenderProfile = shouldShowProfile(
                   dayMessages,
