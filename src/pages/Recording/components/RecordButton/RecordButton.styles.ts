@@ -18,24 +18,6 @@ const pulseGlow = keyframes`
   }
 `;
 
-const scaleVolume = (volume: number) => keyframes`
-  0%, 100% {
-    transform: scale(${1 + volume * 0.01});
-  }
-  50% {
-    transform: scale(${1 + volume * 0.012});
-  }
-`;
-
-const scaleVolumeGlow = (volume: number) => keyframes`
-  0%, 100% {
-    transform: scale(${1 + volume * 0.02});
-  }
-  50% {
-    transform: scale(${1 + volume * 0.024});
-  }
-`;
-
 export const Container = styled.button<{
   isRecording: boolean;
   volume?: number;
@@ -50,7 +32,9 @@ export const Container = styled.button<{
   cursor: pointer;
   transition:
     background 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    border 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.06s cubic-bezier(0.2, 0, 0.2, 1),
+    box-shadow 0.06s cubic-bezier(0.2, 0, 0.2, 1);
   z-index: ${Z_INDEX.DROPDOWN};
 
   background: ${(props) =>
@@ -91,9 +75,12 @@ export const Container = styled.button<{
         0 0 0 1px rgba(255, 255, 255, 0.3)
       `};
 
-  animation: ${(props) =>
-      props.isRecording && props.volume ? scaleVolume(props.volume) : 'none'}
-    0.1s ease-out;
+  transform: ${(props) =>
+    props.isRecording && props.volume
+      ? `scale(${1 + props.volume * 0.01})`
+      : 'scale(1)'};
+  will-change: ${(props) =>
+    props.isRecording ? 'transform, box-shadow' : 'auto'};
 
   &::before {
     content: '';
@@ -107,14 +94,17 @@ export const Container = styled.button<{
     z-index: -1;
     opacity: ${(props) => (props.isRecording ? 0.6 : 0.4)};
     filter: blur(8px);
-    transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition:
+      background 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.06s cubic-bezier(0.2, 0, 0.2, 1),
+      opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      filter 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: ${(props) =>
+      props.isRecording && props.volume
+        ? `scale(${1 + props.volume * 0.02})`
+        : 'scale(1)'};
+    will-change: ${(props) => (props.isRecording ? 'transform' : 'auto')};
     animation: ${(props) => {
-      if (props.isRecording && props.volume) {
-        return css`
-          ${pulseGlow} 2s ease-in-out infinite,
-            ${scaleVolumeGlow(props.volume)} 0.1s ease-out
-        `;
-      }
       if (props.isRecording) {
         return css`
           ${pulseGlow} 2s ease-in-out infinite
