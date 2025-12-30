@@ -10,7 +10,7 @@ import type { IFrame, IMessage } from '@stomp/stompjs';
 type WebSocketMessageHandler = (message: WebSocketEvent) => void;
 
 const WEBSOCKET_CONFIG = {
-  URL: import.meta.env.VITE_WS_URL,
+  URL: `${import.meta.env.VITE_WS_URL}/chat/ws-chat`,
   MAX_RECONNECT_ATTEMPTS: 5,
   RECONNECT_DELAY_MS: 1000,
   HEARTBEAT_INTERVAL_MS: 10000,
