@@ -94,3 +94,10 @@ export interface UpdateReportUserNameRequest {
   selectedSpeaker: 'A' | 'B';
   otherUserName: string;
 }
+
+export interface ReportCompletedEvent {
+  type: 'REPORT_COMPLETED';
+  reportId: number;
+}
+
+export type ReportWebSocketEvent = ReportCompletedEvent;
