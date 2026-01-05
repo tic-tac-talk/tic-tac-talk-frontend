@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import LogoSVG from '@/assets/images/logo.svg?react';
 import { PAGINATION } from '@/constants';
 import { useReports } from '@/hooks/useReport';
 import { mapReportSummaryToHistoryItem } from '@/pages/Main/utils/reportMappers';
+import { reportWebSocketService } from '@/services/reportWebSocket';
+import { storageService } from '@/services/storage';
 import ActionsSection from './components/ActionsSection';
 import MobileMenuButton from './components/MobileMenuButton';
 import Sidebar from './components/Sidebar';
@@ -12,6 +15,7 @@ import * as S from './Main.styles';
 
 const Main = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const {
@@ -36,6 +40,32 @@ const Main = () => {
   const handleOpenSidebar = (): void => {
     setIsSidebarOpen(true);
   };
+
+  useEffect(() => {
+    const token = storageService.getAccessToken();
+    if (!token) {
+      return () => {};
+    }
+
+    let unsubscribe: (() => void) | null = null;
+
+    reportWebSocketService.connect(token).then(() => {
+      unsubscribe = reportWebSocketService.onMessage((event) => {
+        if (event.type === 'REPORT_COMPLETED') {
+          queryClient.invalidateQueries({
+            queryKey: ['reports'],
+          });
+        }
+      });
+    });
+
+    return () => {
+      if (unsubscribe) {
+        unsubscribe();
+      }
+      reportWebSocketService.disconnect();
+    };
+  }, []);
 
   return (
     <S.PageContainer>
