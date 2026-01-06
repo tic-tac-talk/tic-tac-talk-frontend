@@ -34,7 +34,10 @@ class ReportWebSocketService {
       this.isConnecting = true;
 
       this.client = new Client({
-        brokerURL: `${WEBSOCKET_CONFIG.URL}?token=${token}`,
+        brokerURL: WEBSOCKET_CONFIG.URL,
+        connectHeaders: {
+          Authorization: `Bearer ${token}`,
+        },
         reconnectDelay: this.reconnectDelayMs,
         heartbeatIncoming: WEBSOCKET_CONFIG.HEARTBEAT_INTERVAL_MS,
         heartbeatOutgoing: WEBSOCKET_CONFIG.HEARTBEAT_INTERVAL_MS,
