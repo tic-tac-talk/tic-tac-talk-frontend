@@ -17,9 +17,13 @@ interface ApiErrorResponse {
 }
 
 const AUTH_ERROR_CODE = {
-  ACCESS_TOKEN_EXPIRED: ['ACCESS_INVALID', 'ACCESS_EXPIRED'],
-  REFRESH_TOKEN_EXPIRED: ['REFRESH_INVALID', 'REFRESH_EXPIRED'],
+  ACCESS_TOKEN_ERROR: ['ACCESS_INVALID', 'ACCESS_EXPIRED'],
+  REFRESH_TOKEN_ERROR: ['REFRESH_INVALID', 'REFRESH_EXPIRED'],
 } as const;
+
+type AccessTokenErrorCode = (typeof AUTH_ERROR_CODE.ACCESS_TOKEN_ERROR)[number];
+type RefreshTokenErrorCode =
+  (typeof AUTH_ERROR_CODE.REFRESH_TOKEN_ERROR)[number];
 
 const showSessionExpiredAlert = (): void => {
   eventManager.emit('alert', {
@@ -49,12 +53,16 @@ const processTokenRefreshQueue = (
   tokenRefreshQueue = [];
 };
 
-const isAccessTokenExpired = (errorCode?: string): boolean => {
-  return AUTH_ERROR_CODE.ACCESS_TOKEN_EXPIRED.includes(errorCode as never);
+const isAccessTokenExpired = (
+  errorCode?: string,
+): errorCode is AccessTokenErrorCode => {
+  return AUTH_ERROR_CODE.ACCESS_TOKEN_ERROR.some((code) => code === errorCode);
 };
 
-const isRefreshTokenExpired = (errorCode?: string): boolean => {
-  return AUTH_ERROR_CODE.REFRESH_TOKEN_EXPIRED.includes(errorCode as never);
+const isRefreshTokenExpired = (
+  errorCode?: string,
+): errorCode is RefreshTokenErrorCode => {
+  return AUTH_ERROR_CODE.REFRESH_TOKEN_ERROR.some((code) => code === errorCode);
 };
 
 const setupInterceptors = (instance: AxiosInstance) => {
