@@ -4,8 +4,6 @@ import { MEDIA_QUERIES } from '@/constants';
 import theme from '@/styles/theme';
 
 const globalStyles = css`
-  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
-
   @font-face {
     font-family: 'KakaoBigFont';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-Bold.woff2')
