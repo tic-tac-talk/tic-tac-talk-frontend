@@ -6,8 +6,7 @@ import theme from '@/styles/theme';
 const globalStyles = css`
   @font-face {
     font-family: 'KakaoBigFont';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2503@1.0/KakaoBigSans-Bold.woff2')
-      format('woff2');
+    src: url('/KakaoBigSans-Bold-subset.woff2') format('woff2');
     font-display: swap;
   }
 
