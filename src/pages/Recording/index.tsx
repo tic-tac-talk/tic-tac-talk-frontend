@@ -29,6 +29,20 @@ const Recording = () => {
   });
 
   useEffect(() => {
+    if (document.querySelector('link[data-timer-font]')) return;
+
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'font';
+    link.href = '/KakaoBigSans-Bold-subset.woff2';
+    link.type = 'font/woff2';
+    link.crossOrigin = 'anonymous';
+    link.setAttribute('data-timer-font', 'true');
+
+    document.head.appendChild(link);
+  }, []);
+
+  useEffect(() => {
     if (audioBlob && !isProcessing && user) {
       setIsProcessing(true);
 
