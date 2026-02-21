@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReplaceIcon from '@/assets/icons/replace.svg?react';
-import DefaultProfileImage from '@/assets/images/default-profile.png';
+import DefaultProfileImage from '@/assets/images/default-profile.png?format=webp&as=url';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import useModal from '@/hooks/useModal';

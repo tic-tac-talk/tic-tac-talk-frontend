@@ -1,4 +1,4 @@
-import SummaryImage from '@/assets/images/summary.png';
+import SummaryImage from '@/assets/images/summary.png?format=webp&as=url';
 import BaseCard from '@/pages/Report/components/BaseCard';
 import type { BaseCardProps, SummaryContent } from '@/pages/Report/types';
 import * as S from '../BaseCard/BaseCard.styles';

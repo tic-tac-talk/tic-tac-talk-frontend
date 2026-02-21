@@ -1,4 +1,4 @@
-import BehaviorImage from '@/assets/images/behavior.png';
+import BehaviorImage from '@/assets/images/behavior.png?format=webp&as=url';
 import BaseCard from '@/pages/Report/components/BaseCard';
 import type { BaseCardProps, BehaviorContent } from '@/pages/Report/types';
 import * as S from '../BaseCard/BaseCard.styles';

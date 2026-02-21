@@ -1,4 +1,4 @@
-import AnalysisImage from '@/assets/images/analysis.png';
+import AnalysisImage from '@/assets/images/analysis.png?format=webp&as=url';
 import BaseCard from '@/pages/Report/components/BaseCard';
 import type {
   BaseCardProps,

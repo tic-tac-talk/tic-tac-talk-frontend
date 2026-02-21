@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import react from '@vitejs/plugin-react';
 import { defineConfig, loadEnv, type UserConfig } from 'vite';
+import { imagetools } from 'vite-imagetools';
 import mkcert from 'vite-plugin-mkcert';
 import svgrPlugin from 'vite-plugin-svgr';
 import { type InlineConfig } from 'vitest/node';
@@ -46,6 +47,7 @@ export default defineConfig(({ command, mode }) => {
           plugins: ['@emotion/babel-plugin'],
         },
       }),
+      imagetools(),
       svgrPlugin(),
       mkcert(),
     ],

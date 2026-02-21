@@ -13,7 +13,7 @@ const Slider = ({ slides, currentSlide, isTransitioning }: SliderProps) => {
       <S.Track currentSlide={currentSlide} isTransitioning={isTransitioning}>
         {slides.map((slide) => (
           <S.Slide key={`slide-${slide.title}`}>
-            <S.MockUpImage src={slide.mockUpImage} alt="" />
+            <S.MockUpImage src={slide.mockUpImage} alt="" loading="lazy" />
             <S.SlideTitle>{slide.title}</S.SlideTitle>
             <S.SlideDescription>{slide.description}</S.SlideDescription>
           </S.Slide>

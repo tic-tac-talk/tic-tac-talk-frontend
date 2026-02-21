@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import styled from '@emotion/styled';
-import MockUpImage1 from '@/assets/images/mockup1.png';
-import MockUpImage2 from '@/assets/images/mockup2.png';
-import MockUpImage3 from '@/assets/images/mockup3.png';
+import MockUpImage1 from '@/assets/images/mockup1.png?format=webp&as=url';
+import MockUpImage2 from '@/assets/images/mockup2.png?format=webp&as=url';
+import MockUpImage3 from '@/assets/images/mockup3.png?format=webp&as=url';
 import { HEADER_HEIGHT, MEDIA_QUERIES } from '@/constants';
 import CTASection from '@/pages/Landing/components/CTASection';
 import FeatureSection from '@/pages/Landing/components/FeatureSection';

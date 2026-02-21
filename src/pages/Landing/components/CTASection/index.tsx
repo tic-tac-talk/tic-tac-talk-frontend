@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import ChatImage from '@/assets/images/chat.png';
+import ChatImage from '@/assets/images/chat.png?format=webp&as=url';
 import FloatingImage from '@/components/FloatingImage';
 import * as S from '@/pages/Landing/components/CTASection/CTASection.styles';
 
