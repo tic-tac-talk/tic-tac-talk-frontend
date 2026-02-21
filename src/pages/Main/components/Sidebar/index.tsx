@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useAtomValue } from 'jotai';
 import { useNavigate } from 'react-router-dom';
-import DefaultProfileImage from '@/assets/images/default-profile.png';
+import DefaultProfileImage from '@/assets/images/default-profile.png?format=webp&as=url';
 import { userAtom } from '@/atoms/userAtom';
 import type { SidebarProps } from '@/types/Main';
 import { formatDate } from '@/utils/formatters';

@@ -65,6 +65,7 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2",
+    "vite-imagetools": "^9.0.3",
     "vite-plugin-mkcert": "^1.17.8",
     "vitest": "^3.2.4"
   }

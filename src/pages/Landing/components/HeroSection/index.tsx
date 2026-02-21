@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import KakaoIcon from '@/assets/icons/kakao.svg?react';
-import JudgeImage from '@/assets/images/judge.png';
+import JudgeImage from '@/assets/images/judge.png?format=webp&as=url';
 import FloatingImage from '@/components/FloatingImage';
 import * as S from '@/pages/Landing/components/HeroSection/HeroSection.styles';
 import ScrollIndicator from '@/pages/Landing/components/ScrollIndicator';
@@ -19,7 +19,7 @@ const HeroSection = forwardRef<HTMLElement, HeroSectionProps>(
           논리는 선명하게
         </S.Title>
         <S.FloatingImageWrapper>
-          <FloatingImage src={JudgeImage} />
+          <FloatingImage src={JudgeImage} highFetchPriority />
         </S.FloatingImageWrapper>
         <S.Subtitle>
           말다툼 속 감정과 논리,

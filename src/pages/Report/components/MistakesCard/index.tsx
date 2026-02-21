@@ -1,4 +1,4 @@
-import MistakeImage from '@/assets/images/mistake.png';
+import MistakeImage from '@/assets/images/mistake.png?format=webp&as=url';
 import BaseCard from '@/pages/Report/components/BaseCard';
 import type {
   BaseCardProps,

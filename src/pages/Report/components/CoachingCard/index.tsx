@@ -1,4 +1,4 @@
-import SuggestionImage from '@/assets/images/suggestion.png';
+import SuggestionImage from '@/assets/images/suggestion.png?format=webp&as=url';
 import BaseCard from '@/pages/Report/components/BaseCard';
 import type {
   BaseCardProps,
